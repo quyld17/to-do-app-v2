@@ -1,10 +1,10 @@
 import express, { Application } from "express";
 import { MongoClient } from "mongodb";
-
 import getNotes from "./handlers/get";
 import createNote from "./handlers/create";
 import deleteNote from "./handlers/delete";
 import editNote from "./handlers/edit";
+import cors from "cors";
 
 const app: Application = express();
 const port = 4000;
@@ -23,12 +23,11 @@ client
 
 app.locals.db = client.db("notes").collection("notes");
 
+app.use(cors());
+
 app.use(getNotes);
-
 app.use(createNote);
-
 app.use(deleteNote);
-
 app.use(editNote);
 
 app.listen(port, () => {
