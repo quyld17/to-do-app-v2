@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import handleAdd from "../src/components/AddTask";
 import handleDelete from "../src/components/DeleteTask";
-import handleGet from "@/src/components/GetTasks";
-import handleEdit from "@/src/components/EditTask";
+import handleGet from "../src/components/GetTasks";
+import handleEdit from "../src/components/EditTask";
 import Task from "../src/utils/Variables";
 
 import React from "react";

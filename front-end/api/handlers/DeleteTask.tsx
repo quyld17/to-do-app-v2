@@ -1,5 +1,6 @@
-import { message } from "antd";
 import deleteMethodAPI from "../methods/Delete";
+
+import { message } from "antd";
 
 export default async function handleDeleteTask(id: string) {
   return new Promise((resolve, reject) => {

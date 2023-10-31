@@ -1,5 +1,6 @@
-import { message } from "antd";
 import postMethodAPI from "../methods/Post";
+
+import { message } from "antd";
 
 export default async function handleAddTask(note: string) {
   return new Promise((resolve, reject) => {

@@ -1,6 +1,8 @@
 import getMethodAPI from "../methods/Get";
 import Task from "../../src/utils/Variables";
 
+import { message } from "antd";
+
 export default async function handleGetTasks(): Promise<Task[]> {
   return new Promise<Task[]>((resolve, reject) => {
     const endpoint = "/notes";
@@ -10,8 +12,9 @@ export default async function handleGetTasks(): Promise<Task[]> {
       (data: any) => {
         resolve(data);
       },
-      (error: Object) => {
+      (error: any) => {
         reject(error);
+        message.error(error);
       }
     );
   });
