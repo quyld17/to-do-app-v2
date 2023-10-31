@@ -1,5 +1,5 @@
 import getMethodAPI from "../methods/Get";
-import Task from "../../utils/Variables";
+import Task from "../../src/utils/Variables";
 
 export default async function handleGetTasks(): Promise<Task[]> {
   return new Promise<Task[]>((resolve, reject) => {

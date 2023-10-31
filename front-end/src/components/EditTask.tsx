@@ -1,18 +1,11 @@
 import { message } from "antd";
-import handleAddTask from "../../api/handlers/AddTask";
+import handleEditTask from "@/api/handlers/EditTask";
 import handleGet from "./GetTasks";
+import Task from "../utils/Variables";
 
-export default function handleAdd(
-  task: string,
-  setTask: any,
-  setTaskList: any
-) {
-  if (task.trim() === "") {
-    return;
-  }
-  handleAddTask(task)
+export default function handleEdit(editedTask: Task, setTaskList: any) {
+  handleEditTask(editedTask)
     .then(() => {
-      setTask("");
       message.success("Add successfully");
       handleGet(setTaskList);
     })

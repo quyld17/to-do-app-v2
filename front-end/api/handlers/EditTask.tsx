@@ -1,16 +1,12 @@
 import { message } from "antd";
-import postMethodAPI from "../methods/Post";
+import putMethodAPI from "../methods/Put";
+import Task from "@/src/utils/Variables";
 
-export default async function handleAddTask(note: string) {
+export default async function handleEditTask(editedTask: Task) {
   return new Promise((resolve, reject) => {
-    const task = {
-      note,
-      time: new Date().toString().slice(0, 24),
-    };
-
     const endpoint = "/notes";
-    postMethodAPI(
-      task,
+    putMethodAPI(
+      editedTask,
       endpoint,
       (data: any) => {
         resolve(data);
