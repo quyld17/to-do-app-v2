@@ -1,5 +1,5 @@
 import { message } from "antd";
-import { handleAddTask } from "../api/handlers/AddTask";
+import { handleAddTask } from "../../api/handlers/AddTask";
 
 export default function handleAdd(task: string, setTask: any) {
   if (task.trim() === "") {

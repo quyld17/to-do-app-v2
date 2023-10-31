@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import handleGetTasks from "./api/handlers/GetTasks";
-import handleAdd from "./components/AddTask";
-import handleDelete from "./components/DeleteTask";
-import Task from "./utils/Variables";
+import handleGetTasks from "../api/handlers/GetTasks";
+import handleAdd from "../src/components/AddTask";
+import handleDelete from "../src/components/DeleteTask";
+import Task from "../src/utils/Variables";
 
 import React from "react";
 import { Button, Input, Space } from "antd";

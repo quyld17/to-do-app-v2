@@ -1,5 +1,5 @@
 import { message } from "antd";
-import handleDeleteTask from "../api/handlers/DeleteTask";
+import handleDeleteTask from "../../api/handlers/DeleteTask";
 
 export default function handleDelete(id: string) {
   handleDeleteTask(id)
