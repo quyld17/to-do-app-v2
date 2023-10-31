@@ -1,14 +1,23 @@
 import { useEffect, useState } from "react";
-import { handleGetTasks } from "./api/handlers/GetTasks";
-import { handleAddTask } from "./api/handlers/AddTask";
+import handleGetTasks from "./api/handlers/GetTasks";
+import handleAdd from "./components/AddTask";
+import handleDelete from "./components/DeleteTask";
 import Task from "./utils/Variables";
 
 import React from "react";
-import { Button, Input, Space, message } from "antd";
+import { Button, Input, Space } from "antd";
 
 export default function Home() {
   const [taskList, setTaskList] = useState<Task[]>([]);
   const [task, setTask] = useState("");
+
+  const handleAddTaskClick = () => {
+    handleAdd(task, setTask);
+  };
+
+  const handleDeleteTaskClick = (id: string) => {
+    handleDelete(id);
+  };
 
   useEffect(() => {
     handleGetTasks()
@@ -16,36 +25,19 @@ export default function Home() {
         setTaskList(data);
       })
       .catch((error: any) => {
-        console.log("Error getting delivery address: ", error);
+        console.log("Error getting tasks: ", error);
       });
-  }, []);
-
-  function handleAdd(e: any) {
-    e.preventDefault();
-    handleAddTask(task)
-      .then(() => {
-        message.success("Add successfully");
-      })
-      .catch((error: any) => {
-        console.log("Error getting delivery address: ", error);
-      });
-    setTask("");
-    // handleAfterAdd();
-  }
-
-  // function handleAfterAdd() {
-  //   setTask("");
-  // }
+  }, [handleAddTaskClick, handleDeleteTaskClick]);
 
   return (
     <>
-      <Space.Compact style={{ width: "50%" }}>
+      <Space.Compact style={{ width: "30%" }}>
         <Input
           placeholder="Add task"
           value={task}
           onChange={(e) => setTask(e.target.value)}
         />
-        <Button type="primary" onClick={handleAdd}>
+        <Button type="primary" onClick={handleAddTaskClick}>
           Add
         </Button>
       </Space.Compact>
@@ -54,6 +46,15 @@ export default function Home() {
         <>
           <div>ID: {task._id}</div>
           <div>Note: {task.note}</div>
+          <div>Date created: {task.time}</div>
+          <Button
+            type="primary"
+            onClick={() => handleDeleteTaskClick(task._id)}
+          >
+            Delete
+          </Button>
+          <br></br>
+          <br></br>
         </>
       ))}
     </>

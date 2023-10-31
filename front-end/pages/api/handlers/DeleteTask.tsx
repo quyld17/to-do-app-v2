@@ -1,16 +1,10 @@
 import { message } from "antd";
-import postMethodAPI from "../methods/Post";
+import deleteMethodAPI from "../methods/Delete";
 
-export async function handleAddTask(note: string) {
+export default async function handleDeleteTask(id: string) {
   return new Promise((resolve, reject) => {
-    const task = {
-      note,
-      time: new Date().toString().slice(0, 24),
-    };
-
-    const endpoint = "/notes";
-    postMethodAPI(
-      task,
+    const endpoint = `/notes/${id}`;
+    deleteMethodAPI(
       endpoint,
       (data: any) => {
         resolve(data);
