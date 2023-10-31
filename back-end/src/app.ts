@@ -1,10 +1,11 @@
 import express, { Application } from "express";
+import cors from "cors";
 import { MongoClient } from "mongodb";
+
 import getNotes from "./handlers/get";
 import createNote from "./handlers/create";
 import deleteNote from "./handlers/delete";
 import editNote from "./handlers/edit";
-import cors from "cors";
 
 const app: Application = express();
 const port = 4000;
@@ -25,10 +26,14 @@ app.locals.db = client.db("notes").collection("notes");
 
 app.use(cors());
 
-app.use(getNotes);
-app.use(createNote);
-app.use(deleteNote);
-app.use(editNote);
+try {
+  app.use(getNotes);
+  app.use(createNote);
+  app.use(deleteNote);
+  app.use(editNote);
+} catch (error) {
+  console.log("error", error);
+}
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
